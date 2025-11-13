@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Stock Data Visualizer</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h1>Stock Data Visualizer</h1>
+
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+<form method="post">
+
+    <p>
+        <label for="symbol">Stock Symbol:</label>
+        <select id="symbol" name="symbol" required>
+            <option value="">-- choose --</option>
+            {% for s in symbols %}
+                <option value="{{ s }}" {% if s == symbol %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <p>
+        <label>Chart Type:</label>
+        <br>
+        <input type="radio" id="line" name="chart_type" value="line" {% if chart_type == "line" %}checked{% endif %}>
+        <label for="line">Line</label>
+
+        <input type="radio" id="bar" name="chart_type" value="bar" {% if chart_type == "bar" %}checked{% endif %}>
+        <label for="bar">Bar</label>
+    </p>
+
+    <p>
+        <label for="time_series">Time Series:</label>
+        <select id="time_series" name="time_series">
+            <option value="DAILY" {% if time_series == "DAILY" %}selected{% endif %}>Daily</option>
+            <option value="WEEKLY" {% if time_series == "WEEKLY" %}selected{% endif %}>Weekly</option>
+            <option value="MONTHLY" {% if time_series == "MONTHLY" %}selected{% endif %}>Monthly</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" value="{{ start_date }}">
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" value="{{ end_date }}">
+    </p>
+
+    <p>
+        <button type="submit">Generate Chart</button>
+    </p>
+
+</form>
+
+{% if chart_svg %}
+<h2>Chart</h2>
+{{ chart_svg|safe }}
+{% endif %}
+
+</body>
+</html>
+
