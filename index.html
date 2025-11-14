@@ -25,7 +25,7 @@
         <select id="symbol" name="symbol" required>
             <option value="">-- choose --</option>
             {% for s in symbols %}
-                <option value="{{ s }}" {% if s == symbol %}selected{% endif %}>{{ s }}</option>
+                <option value="{{ s }}" {% if s = symbol %}selected{% endif %}>{{ s }}</option>
             {% endfor %}
         </select>
     </p>
@@ -33,19 +33,19 @@
     <p>
         <label>Chart Type:</label>
         <br>
-        <input type="radio" id="line" name="chart_type" value="line" {% if chart_type == "line" %}checked{% endif %}>
+        <input type="radio" id="line" name="chart_type" value="line" {% if chart_type = "line" %}checked{% endif %}>
         <label for="line">Line</label>
 
-        <input type="radio" id="bar" name="chart_type" value="bar" {% if chart_type == "bar" %}checked{% endif %}>
+        <input type="radio" id="bar" name="chart_type" value="bar" {% if chart_type = "bar" %}checked{% endif %}>
         <label for="bar">Bar</label>
     </p>
 
     <p>
         <label for="time_series">Time Series:</label>
         <select id="time_series" name="time_series">
-            <option value="DAILY" {% if time_series == "DAILY" %}selected{% endif %}>Daily</option>
-            <option value="WEEKLY" {% if time_series == "WEEKLY" %}selected{% endif %}>Weekly</option>
-            <option value="MONTHLY" {% if time_series == "MONTHLY" %}selected{% endif %}>Monthly</option>
+            <option value="DAILY" {% if time_series = "DAILY" %}selected{% endif %}>Daily</option>
+            <option value="WEEKLY" {% if time_series = "WEEKLY" %}selected{% endif %}>Weekly</option>
+            <option value="MONTHLY" {% if time_series = "MONTHLY" %}selected{% endif %}>Monthly</option>
         </select>
     </p>
 
