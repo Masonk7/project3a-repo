@@ -3,8 +3,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: dockerfile
-    image: stocks_app_image_flask
+      dockerfile: Dockerfile
     container_name: flask_stocks
     ports:
       - "5005:5000"
@@ -12,3 +11,5 @@ services:
       - .:/app
     environment:
       FLASK_DEBUG: "1"
+      FLASK_APP: "app.py"
+      ALPHAVANTAGE_API_KEY: "ISKC9Q4DFAEBJCTB"
