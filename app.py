@@ -57,7 +57,7 @@ def fetch_data(symbol: str, fn: str) -> dict:
         print("API Error:", data["Error Message"])
         sys.exit(1)
     if "Note" in data:
-        print("API Note (rate limited). Please wait ~1 minute and try again.")
+        print("API Note (rate limited). Please wait and try again.")
         sys.exit(1)
     return data
 
@@ -174,7 +174,7 @@ def web_fetch_data(symbol: str, fn: str) -> dict:
     if "Error Message" in data:
         raise RuntimeError(f"API Error: {data['Error Message']}")
     if "Note" in data:
-        raise RuntimeError("API Note: rate limited. Please wait ~1 minute and try again.")
+        raise RuntimeError("API Note rate limited. Please wait and try again.")
     return data
 
 def web_parse_close_series(data: dict, fn: str):
@@ -290,3 +290,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+app.run(port=5000)
