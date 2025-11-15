@@ -248,8 +248,6 @@ def index():
         end_date=end_date,
     )
 
-
-
 def main():
     print("=== Stock Data Visualizer ===")
 
